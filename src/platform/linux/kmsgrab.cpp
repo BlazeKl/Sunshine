@@ -1501,8 +1501,8 @@ namespace platf {
           for (auto &entry : fs::directory_iterator { card_dir }) {
             auto file = entry.path().filename();
 
-            auto filestring = file.generic_u8string();
-            if (std::string_view { filestring }.substr(0, 7) != "renderD"sv) {
+            auto filestring = file.generic_string();
+            if (std::string_view {filestring}.substr(0, 7) != "renderD"sv) {
               continue;
             }
 
