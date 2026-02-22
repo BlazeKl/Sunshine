@@ -1512,7 +1512,8 @@ namespace platf {
             if (compatible_render_fd.el >= 0 && va::validate(compatible_render_fd.el)) {
               file_t fb_fd[4];
               egl::surface_descriptor_t sd;
-              if (refresh(fb_fd, &sd) == capture_e::ok) {
+              std::optional<std::chrono::steady_clock::time_point> frame_timestamp;
+              if (refresh(fb_fd, &sd, frame_timestamp) == capture_e::ok) {
                 gbm::gbm_t gbm { gbm::create_device(compatible_render_fd.el) };
                 if (gbm) {
                   egl::display_t display = egl::make_display(gbm.get());
