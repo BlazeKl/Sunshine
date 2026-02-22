@@ -333,7 +333,7 @@ namespace platf {
         }
         if (!rendernode_path.empty()) {
           BOOST_LOG(debug) << "Opening render node: "sv << rendernode_path;
-          render_fd.el = open(rendernode_path, O_RDWR);
+          render_fd.el = open(rendernode_path.c_str(), O_RDWR);
           if (render_fd.el < 0) {
             BOOST_LOG(warning) << "Couldn't open render node: "sv << rendernode_path << ": "sv << strerror(errno);
             render_fd.el = dup(fd.el);
